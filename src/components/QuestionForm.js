@@ -11,11 +11,19 @@ function QuestionForm(props) {
   });
 
   function handleChange(event) {
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.value,
-    });
+    const { name, value } = event.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: name === "correctIndex" ? parseInt(value) : value,
+      answers: [
+        prevState.answer1,
+        prevState.answer2,
+        prevState.answer3,
+        prevState.answer4
+      ]
+    }));
   }
+
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -91,3 +99,11 @@ function QuestionForm(props) {
 }
 
 export default QuestionForm;
+
+
+
+
+
+
+
+
